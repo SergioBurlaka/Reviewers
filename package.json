@@ -42,11 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-<<<<<<< HEAD
   },
   "devDependencies": {
     "redux-devtools": "^3.5.0"
-=======
->>>>>>> 973c2570219d171e10730b63ed98aea4aeb0e584
   }
 }
