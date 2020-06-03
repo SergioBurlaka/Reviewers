@@ -1,0 +1,64 @@
+.employees-wrapper{
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px 0 rgba(60,64,76,0.2);
+
+
+}
+
+.employees-card-wrapper{
+  max-width: 350px;
+  border-top: 1px solid #E0E6EB;
+}
+
+.employee-card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+
+  &__status{
+    color: #22A033;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 16px;
+    text-align: right;
+
+    
+  }
+
+
+  &__info{
+    display: flex;
+
+    .icon-section{
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+
+    }
+    .title{
+      color: #23232D;
+      font-size: 14px;
+      letter-spacing: 0;
+      line-height: 20px;
+    }
+    .sub-title{
+      color: #6C7781;
+      font-size: 12px;
+      letter-spacing: 0;
+      line-height: 16px;
+      svg{
+        margin-right: 5px;
+      }
+    }
+
+    .wrapper{
+      margin-left: 8px;
+
+    }
+  }
+
+
+}
