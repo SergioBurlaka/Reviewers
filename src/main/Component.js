@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import "./main.scss";
 
 import Employees from '../components/employees';
@@ -17,17 +17,17 @@ class Main extends React.Component {
 
     return (
       <div className="main" >
-          Main
-          <Reviewers reviewersColection={this.props.reviewersColection}/> 
-          {/* <Reviewers />  */}
-          <Employees/> 
+        	<div className="main-inner-wrapper">
+            <Reviewers reviewersColection={this.props.reviewersColection}/> 
+            <Employees/> 
+          </div>
       </div>
     )
   }
 }
 
-Main.propTypes = {
+// Main.propTypes = {
   
-};
+// };
 
 export default Main;

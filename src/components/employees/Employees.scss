@@ -3,19 +3,55 @@
   border-radius: 3px;
   box-shadow: 0 2px 4px 0 rgba(60,64,76,0.2);
 
+}
+
+.employees{
+  min-width: 900px;
 
 }
 
+.header-wrapper{
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+}
+
+.header-width{
+  min-width: 270px;
+  margin-right: 10px;
+
+}
+
+.employees-list-header{
+  display: flex;
+  justify-content: space-between;
+
+  .status{
+    color: #6C7781;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 16px;
+  }
+  .date{
+    color: #6C7781;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 16px;
+    text-align: right;
+  }
+}
+
 .employees-card-wrapper{
-  max-width: 350px;
-  border-top: 1px solid #E0E6EB;
+
 }
 
 .employee-card{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
+
 
   &__status{
     color: #22A033;
@@ -55,10 +91,95 @@
     }
 
     .wrapper{
-      margin-left: 8px;
+      margin-left: 10px;
 
     }
   }
 
 
+}
+
+.employees-item{
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #E0E6EB;
+  padding: 10px 16px;
+
+
+}
+
+.intervals-report{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+
+  &__item{
+    min-width: 56px;
+    text-align: center;
+
+
+
+    .check{
+      font-size: 24px;
+      color: #5BC66A;
+    }
+    .uncheck{
+      font-size: 24px;
+      color: #E0E6EB;
+
+    }
+
+
+  }
+}
+
+
+.test-btn{
+  border: 1px solid #b4b4b4;
+  padding: 9px 15px 9px 15px;
+  max-width: 100px;
+  border-radius: 5px;
+  &:hover{
+    background-color: #d8d8d8;
+    color: #FFFFFF;
+    border: 1px solid #d8d8d8;
+  }
+}
+
+.interval{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  color: #BAC5CE;
+
+
+
+  &-button{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover{
+      background-color: rgb(218, 218, 218);
+    }
+  }
+
+}
+
+.interval-wrapper{
+  display: flex;
+  &__item{
+    color: #6C7781;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 16px;
+    text-align: center;
+    padding: 8px 0px;
+    min-width: 56px;
+
+  }
 }

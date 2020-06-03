@@ -1,10 +1,10 @@
 import React  from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import './Reviewers.scss';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -20,36 +20,25 @@ class Reviewers extends React.Component {
       options: this.props.reviewersColection,
       currentItem: this.props.reviewersColection[0]
     });
-
     this.props.setCurrentReviewer(this.props.reviewersColection[0])
   }
 
-
-
-
   changeShowMwnu = () =>{
     const {showMenu} = this.state;
-    console.log('fire select-menu')
-    console.log(" reviewersColection ", this.props.reviewersColection)
     this.setState({ showMenu: !showMenu });
   }
 
-
   setCurrentItem = (currentItem) =>{
-    console.log('currentItem ', currentItem)
     this.setState({ currentItem: currentItem[0] });
     this.props.setCurrentReviewer(currentItem[0])
   }
 
 
-
   render() {
     const {showMenu, options, currentItem} = this.state;
 
-
     return (
-      <div className="Reviewers">
-       Reviewers
+      <div className="reviewers">
         <div
          className={`reviewers-select ${ showMenu ? 'open-menu': ''}`} 
           onClick={() => {
@@ -57,7 +46,7 @@ class Reviewers extends React.Component {
                 }} >
           <div className="reviewers-select__hrader">
             <span className="reviewers-select__current">
-                <FontAwesomeIcon className="icon-section" icon={faUserCircle} /> 
+                {currentItem &&   <img className="icon-section" alt="" src={require(`../../assets/${currentItem.name}.jpg`)} />}
                 <div className="wrapper">
                   <div className="title">
                     Reviewer
@@ -97,10 +86,10 @@ class Reviewers extends React.Component {
   }
 }
 
-Reviewers.propTypes = {
-  deviceConnected: PropTypes.bool,
+// Reviewers.propTypes = {
+//   deviceConnected: PropTypes.bool,
  
-};
+// };
 
 
 export default Reviewers;
