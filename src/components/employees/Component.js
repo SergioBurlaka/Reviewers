@@ -40,8 +40,6 @@ class Employees extends React.Component {
 			return this.addDayToCurrentDate(item);
 		});
 
-		console.log("nextTimeInterval", nextTimeInterval)
-		console.log("isIntervlAheadOfCurrentDay", )
 
 		if(this.isIntervlAheadOfCurrentDay(nextTimeInterval)){
 			this.setState({ disableNextDayHandler: true });
@@ -101,36 +99,6 @@ class Employees extends React.Component {
 		return moment().day(0).format('D MMM')
 	};
 
-	getCurrentday = () => {
-		console.log('moment().day()', moment().day());
-		console.log('moment().day(0)', moment().day(0).format('YYYYMMDD'));
-		console.log('moment().day(0)', moment().day(-7).format('YYYYMMDD'));
-		console.log('moment().day(0)', moment().day(-14).format('YYYYMMDD'));
-		console.log('moment().day(0)', moment().day(-21).format('YYYYMMDD'));
-
-		// console.log('moment().day(0)', moment().day(0).format('D MMM'))
-		// console.log('moment().day(0)', moment().day(-3).format('D MMM'))
-		// console.log('moment().day(0)', moment().day(-10).format('D MMM'))
-		// console.log('moment().day(0)', moment().day(-17).format('D MMM'))
-	};
-
-	formateTime = () => {
-		let formatedDate = moment().format('YYYYMMDD');
-		let formatedDateDayMonth = moment().format('D MMM');
-		let formatedDateAnyDate = moment('20200503');
-		// let formatedDateYesterday = moment().subtract(7, 'days');
-		let formatedDatePreviosDay = moment().subtract(1, 'days').format('YYYYMMDD');
-		let formatedDateNextDay = moment().add(1, 'days').format('YYYYMMDD');
-		let formatedDateNextDayMyInput = moment('20200512').add(1, 'days').format('YYYYMMDD');
-
-		console.log('formatedDateNextDayMyInput ', formatedDateNextDayMyInput);
-		console.log('formatedDatePreviosDay ', formatedDatePreviosDay);
-		console.log('formatedDateNextDay ', formatedDateNextDay);
-
-		console.log('formatedDate ', formatedDate);
-		console.log('formatedDateDayMonth ', formatedDateDayMonth);
-		console.log('formatedDateAnyDate ', formatedDateAnyDate);
-	};
 
 	getTimeIntervalsForEmployees = (employeeColection) => {
 		const { timeInterval } = this.state;
