@@ -40,33 +40,29 @@ class Employees extends React.Component {
 			return this.addDayToCurrentDate(item);
 		});
 
-
-		if(this.isIntervlAheadOfCurrentDay(nextTimeInterval)){
+		if (this.isIntervlAheadOfCurrentDay(nextTimeInterval)) {
 			this.setState({ disableNextDayHandler: true });
-			return
+			return;
 		}
 
-		let disablegandler = this.isIntervlCurrentDay(nextTimeInterval)
+		let disablegandler = this.isIntervlCurrentDay(nextTimeInterval);
 		this.setState({ disableNextDayHandler: disablegandler });
-		
 
 		this.setState({ timeInterval: nextTimeInterval }, () => {
 			const timeIntervalsForEmployees = this.getTimeIntervalsForEmployees(listEmployee);
 			this.setState({ listEmployee: timeIntervalsForEmployees });
 		});
-
 	};
 
-
-	isIntervlCurrentDay = (nextInterval) =>{
+	isIntervlCurrentDay = (nextInterval) => {
 		let nextReportDay = moment().day(0).format('YYYYMMDD');
-		return nextInterval.indexOf(nextReportDay) !== -1
-	}
+		return nextInterval.indexOf(nextReportDay) !== -1;
+	};
 
-	isIntervlAheadOfCurrentDay = (nextInterval) =>{
+	isIntervlAheadOfCurrentDay = (nextInterval) => {
 		let nextReportDay = moment().day(7).format('YYYYMMDD');
-		return nextInterval.indexOf(nextReportDay) !== -1
-	}
+		return nextInterval.indexOf(nextReportDay) !== -1;
+	};
 
 	previosDayInterval = () => {
 		const { timeInterval, listEmployee } = this.state;
@@ -81,24 +77,23 @@ class Employees extends React.Component {
 	};
 
 	addDayToCurrentDate = (date) => {
-    let dayAtWeek = 7;
+		let dayAtWeek = 7;
 		return moment(date).add(dayAtWeek, 'days').format('YYYYMMDD');
 	};
 
 	subtractDayFromCurrentDate = (date) => {
-    let dayAtWeek = 7;
+		let dayAtWeek = 7;
 		return moment(date).subtract(dayAtWeek, 'days').format('YYYYMMDD');
 	};
 
 	checkCurrentDate = (employee) => {
 		let previosReportDay = moment().day(0).format('YYYYMMDD');
-		return employee.weeks_with_submitted_reports.indexOf(previosReportDay) !== -1
+		return employee.weeks_with_submitted_reports.indexOf(previosReportDay) !== -1;
 	};
 
 	getCurrentreportDay = (employee) => {
-		return moment().day(0).format('D MMM')
+		return moment().day(0).format('D MMM');
 	};
-
 
 	getTimeIntervalsForEmployees = (employeeColection) => {
 		const { timeInterval } = this.state;
@@ -179,7 +174,11 @@ class Employees extends React.Component {
 											</div>
 										</span>
 										<div className="employee-card__status">
-											{ this.checkCurrentDate(item) ? <div className="submited">Submited</div> : <div className="pending">Pending</div>}
+											{this.checkCurrentDate(item) ? (
+												<div className="submited">Submited</div>
+											) : (
+												<div className="pending">Pending</div>
+											)}
 										</div>
 									</div>
 									<div className="intervals-report">
