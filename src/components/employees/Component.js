@@ -5,13 +5,13 @@ import './Employees.scss';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends, faChevronLeft, faBan, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-
 import { faCheckSquare } from '@fortawesome/free-regular-svg-icons';
 
 class Employees extends React.Component {
 	state = {
 		listEmployee: [],
-		timeInterval: []
+		timeInterval: [],
+		disableNextDayHandler: true
 	};
 
 	componentDidMount() {
@@ -39,11 +39,36 @@ class Employees extends React.Component {
 		const nextTimeInterval = timeInterval.map((item, index) => {
 			return this.addDayToCurrentDate(item);
 		});
+
+		console.log("nextTimeInterval", nextTimeInterval)
+		console.log("isIntervlAheadOfCurrentDay", )
+
+		if(this.isIntervlAheadOfCurrentDay(nextTimeInterval)){
+			this.setState({ disableNextDayHandler: true });
+			return
+		}
+
+		let disablegandler = this.isIntervlCurrentDay(nextTimeInterval)
+		this.setState({ disableNextDayHandler: disablegandler });
+		
+
 		this.setState({ timeInterval: nextTimeInterval }, () => {
 			const timeIntervalsForEmployees = this.getTimeIntervalsForEmployees(listEmployee);
 			this.setState({ listEmployee: timeIntervalsForEmployees });
 		});
+
 	};
+
+
+	isIntervlCurrentDay = (nextInterval) =>{
+		let nextReportDay = moment().day(0).format('YYYYMMDD');
+		return nextInterval.indexOf(nextReportDay) !== -1
+	}
+
+	isIntervlAheadOfCurrentDay = (nextInterval) =>{
+		let nextReportDay = moment().day(7).format('YYYYMMDD');
+		return nextInterval.indexOf(nextReportDay) !== -1
+	}
 
 	previosDayInterval = () => {
 		const { timeInterval, listEmployee } = this.state;
@@ -54,6 +79,7 @@ class Employees extends React.Component {
 			const timeIntervalsForEmployees = this.getTimeIntervalsForEmployees(listEmployee);
 			this.setState({ listEmployee: timeIntervalsForEmployees });
 		});
+		this.setState({ disableNextDayHandler: false });
 	};
 
 	addDayToCurrentDate = (date) => {
@@ -64,6 +90,15 @@ class Employees extends React.Component {
 	subtractDayFromCurrentDate = (date) => {
     let dayAtWeek = 7;
 		return moment(date).subtract(dayAtWeek, 'days').format('YYYYMMDD');
+	};
+
+	checkCurrentDate = (employee) => {
+		let previosReportDay = moment().day(0).format('YYYYMMDD');
+		return employee.weeks_with_submitted_reports.indexOf(previosReportDay) !== -1
+	};
+
+	getCurrentreportDay = (employee) => {
+		return moment().day(0).format('D MMM')
 	};
 
 	getCurrentday = () => {
@@ -121,7 +156,7 @@ class Employees extends React.Component {
 	}
 
 	render() {
-		const { listEmployee, timeInterval } = this.state;
+		const { listEmployee, timeInterval, disableNextDayHandler } = this.state;
 
 		return (
 			<div className="employees">
@@ -132,11 +167,11 @@ class Employees extends React.Component {
 						<div className="header-wrapper">
 							<div className="employees-list-header header-width">
 								<span className="status">Employee / Domain</span>
-								<span className="date">28 Dec (Current)</span>
+								<span className="date">{this.getCurrentreportDay()} (Current)</span>
 							</div>
 							<div className="interval">
 								<div
-									className="interval-button"
+									className={`interval-button ${disableNextDayHandler ? 'disable' : ''}`}
 									onClick={() => {
 										this.nextDayInterval();
 									}}
@@ -175,10 +210,12 @@ class Employees extends React.Component {
 												</div>
 											</div>
 										</span>
-										<div className="employee-card__status">Submited</div>
+										<div className="employee-card__status">
+											{ this.checkCurrentDate(item) ? <div className="submited">Submited</div> : <div className="pending">Pending</div>}
+										</div>
 									</div>
 									<div className="intervals-report">
-										<div className="interval-button" />
+										<div className="damb-box" />
 										{item.reportsForCurrentInterval.map((itemInterval, indexInterval) => {
 											return (
 												<div className="intervals-report__item" key={indexInterval}>
@@ -190,7 +227,7 @@ class Employees extends React.Component {
 												</div>
 											);
 										})}
-										<div className="interval-button" />
+										<div className="damb-box" />
 									</div>
 								</div>
 							);
